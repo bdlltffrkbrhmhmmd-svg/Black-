@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تسجيل دخول المسؤول</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f7f5fa;
+      font-family: Arial, Tahoma, sans-serif;
+      color: #57257f;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 720px;
+      padding: 28px 24px 50px;
+      text-align: center;
+    }
+
+    /* أيقونة المحفظة */
+    .wallet {
+      width: 80px;
+      height: 68px;
+      background: linear-gradient(135deg, #9824bd, #57219b);
+      border-radius: 10px 10px 14px 14px;
+      margin: 0 auto 35px;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(91, 33, 155, 0.15);
+    }
+
+    .wallet::before {
+      content: "";
+      position: absolute;
+      width: 58px;
+      height: 5px;
+      background: white;
+      border-radius: 10px;
+      top: 10px;
+      right: 11px;
+    }
+
+    .wallet::after {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      background: white;
+      border-radius: 50%;
+      right: 10px;
+      bottom: 20px;
+    }
+
+    /* العنوان */
+    .title {
+      font-size: 31px;
+      font-weight: 800;
+      color: #57257f;
+      margin-bottom: 60px;
+      line-height: 1.5;
+    }
+
+    .title span {
+      color: #57257f;
+    }
+
+    /* الكرت */
+    .login-card {
+      width: 100%;
+      background: #ffffff;
+      border-radius: 38px;
+      padding: 48px 40px 40px;
+      box-shadow: 0 15px 35px rgba(82, 37, 127, 0.08);
+    }
+
+    /* عنوان الدخول */
+    .login-title {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      color: #57257f;
+      font-size: 27px;
+      font-weight: bold;
+      margin-bottom: 38px;
+    }
+
+    .lock {
+      font-size: 27px;
+    }
+
+    /* الحقول */
+    .input-box {
+      width: 100%;
+      height: 105px;
+      border: 3px solid #ddd;
+      border-radius: 25px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background: #fff;
+      transition: 0.25s;
+    }
+
+    .input-box:focus-within {
+      border-color: #7b2ab5;
+      box-shadow: 0 0 0 4px rgba(123, 42, 181, 0.08);
+    }
+
+    .input-box input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 23px;
+      color: #444;
+      font-family: inherit;
+      text-align: right;
+      order: 1;
+    }
+
+    .input-box input::placeholder {
+      color: #777;
+      opacity: 1;
+    }
+
+    .input-icon {
+      width: 38px;
+      text-align: center;
+      font-size: 27px;
+      color: #777;
+      order: 2;
+      margin-right: 10px;
+    }
+
+    /* زر الدخول */
+    .login-btn {
+      width: 100%;
+      height: 100px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(
+        135deg,
+        #a124bd,
+        #60209e
+      );
+      color: white;
+      font-family: inherit;
+      font-size: 27px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 12px 25px rgba(112, 30, 169, 0.25);
+      transition: 0.2s;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(112, 30, 169, 0.32);
+    }
+
+    .login-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* رسالة */
+    .message {
+      display: none;
+      margin-top: 22px;
+      padding: 15px;
+      border-radius: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      background: #f1e8f8;
+      color: #60209e;
+    }
+
+    /* الجوال */
+    @media (max-width: 600px) {
+
+      .page {
+        padding: 28px 24px 40px;
+      }
+
+      .wallet {
+        width: 76px;
+        height: 64px;
+        margin-bottom: 30px;
+      }
+
+      .title {
+        font-size: 27px;
+        margin-bottom: 45px;
+      }
+
+      .login-card {
+        padding: 38px 25px 30px;
+        border-radius: 34px;
+      }
+
+      .login-title {
+        font-size: 24px;
+        margin-bottom: 32px;
+      }
+
+      .input-box {
+        height: 88px;
+        border-radius: 23px;
+        margin-bottom: 22px;
+      }
+
+      .input-box input {
+        font-size: 20px;
+      }
+
+      .input-icon {
+        font-size: 24px;
+      }
+
+      .login-btn {
+        height: 88px;
+        border-radius: 23px;
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      .page {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .title {
+        font-size: 23px;
+      }
+
+      .login-card {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .login-title {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- أيقونة المحفظة -->
+    <div class="wallet"></div>
+
+    <!-- العنوان -->
+    <div class="title">
+      لوحة تحكم - تطبيق السحب
+    </div>
+
+    <!-- كرت تسجيل الدخول -->
+    <div class="login-card">
+
+      <div class="login-title">
+        <span class="lock">🔒</span>
+        <span>تسجيل دخول المسؤول</span>
+      </div>
+
+      <!-- البريد الإلكتروني -->
+      <div class="input-box">
+        <input
+          type="email"
+          id="email"
+          placeholder="البريد الإلكتروني..."
+          autocomplete="email"
+        >
+        <div class="input-icon">✉</div>
+      </div>
+
+      <!-- كلمة المرور -->
+      <div class="input-box">
+        <input
+          type="password"
+          id="password"
+          placeholder="كلمة المرور..."
+          autocomplete="current-password"
+        >
+        <div class="input-icon">🔑</div>
+      </div>
+
+      <!-- زر الدخول -->
+      <button class="login-btn" onclick="login()">
+        تسجيل الدخول &nbsp; ↪
+      </button>
+
+      <div class="message" id="message"></div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function login() {
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const message = document.getElementById("message");
+
+      if (!email || !password) {
+        message.style.display = "block";
+        message.style.color = "#b3261e";
+        message.style.background = "#fdecea";
+        message.textContent = "يرجى إدخال البريد الإلكتروني وكلمة المرور";
+        return;
+      }
+
+      message.style.display = "block";
+      message.style.color = "#57257f";
+      message.style.background = "#f1e8f8";
+      message.textContent = "جاري تسجيل الدخول...";
+
+      /*
+        هنا تضع عملية تسجيل الدخول الحقيقية
+        وربط قاعدة البيانات أو API.
+      */
+
+      setTimeout(() => {
+        message.textContent = "تم إرسال بيانات تسجيل الدخول";
+      }, 1500);
+    }
+  </script>
+
+</body>
+</html>
